@@ -22,7 +22,7 @@ Ionospheric bubbles are plasma depletions in the Earth's ionosphere that can deg
 ## 🧪 Data & Models
 
 This visualization uses data derived from empirical or machine learning models trained on:
-- Satellite observations (e.g., ROCSAT, C/NOFS)
+- Satellite observations (e.g., SWARM)
 - Ground-based GNSS scintillation data
 - F10.7 solar flux indices and seasonal information
 
@@ -30,8 +30,3 @@ _Model outputs are probabilistic and intended for research and situational aware
 
 ## 🚀 Getting Started
 
-### Run Locally
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ionosphere-dashboard.git
-   cd ionosphere-dashboard
