@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F0F4F8;
+            color: #E2E8F0; /* Default text color for dark theme */
         }
         .chart-container {
             position: relative;
@@ -26,7 +26,7 @@
         .spinner {
             width: 32px;
             height: 32px;
-            border: 4px solid #d1d5db;
+            border: 4px solid #475569; /* Darker border for dark theme */
             border-bottom-color: #3B82F6;
             border-radius: 50%;
             display: inline-block;
@@ -37,37 +37,58 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; }
+        .prose li { margin-top: 0.5em; margin-bottom: 0.5em; }
+        .form-input {
+            background-color: #1E293B;
+            border-color: #475569;
+            color: #E2E8F0;
+        }
+        .card {
+            background-color: rgba(15, 23, 42, 0.7); /* bg-slate-900/70 */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="bg-slate-900">
+
+    <div class="fixed top-0 left-0 w-full h-full -z-20 overflow-hidden">
+        <video autoplay loop muted playsinline poster="https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="w-full h-full object-cover">
+            <source src="https://cdn.pixabay.com/video/2020/03/17/33288-390332895_large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="fixed top-0 left-0 w-full h-full -z-10 bg-black opacity-50"></div>
 
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-2">Decoding Plasma Bubbles</h1>
-            <p class="text-lg text-slate-600">An Infographic on the Key Drivers of Equatorial Ionospheric Irregularities</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Decoding Plasma Bubbles</h1>
+            <p class="text-lg text-slate-300">An Infographic on the Key Drivers of Equatorial Ionospheric Irregularities</p>
         </header>
 
         <section id="overview" class="mb-12">
              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="md:col-span-1 bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center text-center">
-                    <h3 class="text-xl font-bold mb-2">Highest Predicted Probability</h3>
-                    <p class="text-7xl font-bold text-blue-500">74.4%</p>
-                    <p class="text-slate-500 mt-2">Under optimal conditions, the likelihood of bubble formation is significant.</p>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-bold text-white mb-2">Highest Predicted Probability</h3>
+                    <p class="text-7xl font-bold text-blue-400">74.4%</p>
+                    <p class="text-slate-400 mt-2">Under optimal conditions, the likelihood of bubble formation is significant.</p>
                 </div>
-                <div class="md:col-span-1 bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
-                    <h3 class="text-xl font-bold mb-4 text-center">Average Occurrence Probability</h3>
+                <div class="card p-6 rounded-lg shadow-lg flex flex-col justify-center items-center">
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Average Occurrence Probability</h3>
                     <div class="w-48 h-48"><canvas id="averageProbChart"></canvas></div>
                 </div>
-                 <div class="md:col-span-1 bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2">Key Statistics</h3>
-                    <p class="text-slate-600 mb-4">Across 1,172 simulated scenarios, the model reveals a wide range of outcomes.</p>
-                    <ul class="space-y-2 text-slate-700">
-                        <li class="flex justify-between items-center"><span>Mean Probability:</span> <span class="font-bold text-blue-600">21.7%</span></li>
+                 <div class="card p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">Key Statistics</h3>
+                    <p class="text-slate-300 mb-4">Across 1,172 simulated scenarios, the model reveals a wide range of outcomes.</p>
+                    <ul class="space-y-2 text-slate-200">
+                        <li class="flex justify-between items-center"><span>Mean Probability:</span> <span class="font-bold text-blue-400">21.7%</span></li>
                         <li class="flex justify-between items-center"><span>Standard Deviation:</span> <span class="font-bold">17.4%</span></li>
                         <li class="flex justify-between items-center"><span>Median Probability:</span> <span class="font-bold">19.5%</span></li>
-                        <li class="flex justify-between items-center"><span>Highest Probability:</span> <span class="font-bold text-red-500">74.4%</span></li>
-                        <li class="flex justify-between items-center"><span>Lowest Probability:</span> <span class="font-bold text-green-500">0.0%</span></li>
+                        <li class="flex justify-between items-center"><span>Highest Probability:</span> <span class="font-bold text-red-400">74.4%</span></li>
+                        <li class="flex justify-between items-center"><span>Lowest Probability:</span> <span class="font-bold text-green-400">0.0%</span></li>
                     </ul>
                 </div>
             </div>
@@ -75,48 +96,44 @@
 
         <section id="drivers" class="mb-12">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-slate-900">The Four Key Drivers of Bubble Formation</h2>
-                <p class="text-slate-600 mt-2">Plasma bubble probability is not random. It is governed by four primary environmental factors.</p>
+                <h2 class="text-3xl font-bold text-white">The Four Key Drivers of Bubble Formation</h2>
+                <p class="text-slate-300 mt-2">Plasma bubble probability is not random. It is governed by four primary environmental factors.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="card p-6 rounded-lg shadow-lg">
                     <div class="flex justify-between items-center mb-1">
-                        <h3 class="text-2xl font-semibold">1. Seasonal Pattern</h3>
-                        <button class="ai-insight-btn text-xs bg-blue-100 text-blue-700 font-semibold py-1 px-3 rounded-full hover:bg-blue-200 transition" data-target="seasonal-insight" data-prompt-type="seasonal">✨ Get AI Insights</button>
+                        <h3 class="text-2xl font-semibold text-white">1. Seasonal Pattern</h3>
+                        <button class="ai-insight-btn text-xs bg-blue-900/50 text-blue-200 font-semibold py-1 px-3 rounded-full hover:bg-blue-800/50 transition" data-target="seasonal-insight" data-prompt-type="seasonal">✨ Get AI Insights</button>
                     </div>
-                    <p class="text-slate-600 mb-4">Probability peaks dramatically during the spring and autumn equinoxes.</p>
+                    <p class="text-slate-300 mb-4">Probability peaks dramatically during the spring and autumn equinoxes.</p>
                     <div class="chart-container"><canvas id="seasonalChart"></canvas></div>
                     <div id="seasonal-insight" class="insight-container mt-4 hidden"></div>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="card p-6 rounded-lg shadow-lg">
                     <div class="flex justify-between items-center mb-1">
-                        <h3 class="text-2xl font-semibold">2. Geographic Location</h3>
-                        <button class="ai-insight-btn text-xs bg-purple-100 text-purple-700 font-semibold py-1 px-3 rounded-full hover:bg-purple-200 transition" data-target="longitude-insight" data-prompt-type="longitude">✨ Get AI Insights</button>
+                        <h3 class="text-2xl font-semibold text-white">2. Geographic Location</h3>
+                        <button class="ai-insight-btn text-xs bg-purple-900/50 text-purple-200 font-semibold py-1 px-3 rounded-full hover:bg-purple-800/50 transition" data-target="longitude-insight" data-prompt-type="longitude">✨ Get AI Insights</button>
                     </div>
-                    <p class="text-slate-600 mb-4">Occurrence is not uniform, with specific regions showing significantly higher activity.</p>
+                    <p class="text-slate-300 mb-4">Occurrence is not uniform, with specific regions showing significantly higher activity.</p>
                     <div class="chart-container"><canvas id="longitudeChart"></canvas></div>
                     <div id="longitude-insight" class="insight-container mt-4 hidden"></div>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="card p-6 rounded-lg shadow-lg">
                      <div class="flex justify-between items-center mb-1">
-                        <h3 class="text-2xl font-semibold">3. Solar Activity</h3>
-                        <button class="ai-insight-btn text-xs bg-red-100 text-red-700 font-semibold py-1 px-3 rounded-full hover:bg-red-200 transition" data-target="f107-insight" data-prompt-type="f107">✨ Get AI Insights</button>
+                        <h3 class="text-2xl font-semibold text-white">3. Solar Activity</h3>
+                        <button class="ai-insight-btn text-xs bg-red-900/50 text-red-200 font-semibold py-1 px-3 rounded-full hover:bg-red-800/50 transition" data-target="f107-insight" data-prompt-type="f107">✨ Get AI Insights</button>
                     </div>
-                    <p class="text-slate-600 mb-4">Higher solar activity (F10.7 flux) provides the necessary energy, increasing the overall likelihood.</p>
+                    <p class="text-slate-300 mb-4">Higher solar activity (F10.7 flux) provides the necessary energy, increasing the overall likelihood.</p>
                      <div class="chart-container"><canvas id="f107Chart"></canvas></div>
                      <div id="f107-insight" class="insight-container mt-4 hidden"></div>
                 </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="card p-6 rounded-lg shadow-lg">
                     <div class="flex justify-between items-center mb-1">
-                        <h3 class="text-2xl font-semibold">4. Local Time</h3>
-                        <button class="ai-insight-btn text-xs bg-gray-200 text-gray-700 font-semibold py-1 px-3 rounded-full hover:bg-gray-300 transition" data-target="time-insight" data-prompt-type="time">✨ Get AI Insights</button>
+                        <h3 class="text-2xl font-semibold text-white">4. Local Time</h3>
+                        <button class="ai-insight-btn text-xs bg-slate-700 text-slate-200 font-semibold py-1 px-3 rounded-full hover:bg-slate-600 transition" data-target="time-insight" data-prompt-type="time">✨ Get AI Insights</button>
                     </div>
-                    <p class="text-slate-600 mb-4">Bubbles predominantly form in the post-sunset hours, peaking around 9-10:30 PM.</p>
+                    <p class="text-slate-300 mb-4">Bubbles predominantly form in the post-sunset hours, peaking around 9-10:30 PM.</p>
                     <div class="chart-container"><canvas id="localTimeChart"></canvas></div>
                     <div id="time-insight" class="insight-container mt-4 hidden"></div>
                 </div>
@@ -124,253 +141,198 @@
         </section>
         
         <section id="gemini-forecast" class="mb-12">
-            <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="card p-8 rounded-lg shadow-lg">
                 <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold text-slate-900">Interactive Forecast Simulator ✨</h2>
-                    <p class="text-slate-600 mt-2 max-w-3xl mx-auto">Input your own conditions to generate a real-time risk assessment, explained by AI.</p>
+                    <h2 class="text-3xl font-bold text-white">Interactive Forecast Simulator ✨</h2>
+                    <p class="text-slate-300 mt-2 max-w-3xl mx-auto">Input your own conditions to generate a real-time risk assessment, explained by AI.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
                     <div>
-                        <label for="doy-input" class="font-semibold text-slate-700">Day of Year</label>
-                        <input type="number" id="doy-input" value="85" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <label for="doy-input" class="font-semibold text-slate-200">Day of Year</label>
+                        <input type="number" id="doy-input" value="85" class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
                      <div>
-                        <label for="lon-input" class="font-semibold text-slate-700">Longitude (°E)</label>
-                        <input type="number" id="lon-input" value="-75" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <label for="lon-input" class="font-semibold text-slate-200">Longitude (°E)</label>
+                        <input type="number" id="lon-input" value="-75" class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
                      <div>
-                        <label for="f107-input" class="font-semibold text-slate-700">F10.7</label>
-                        <input type="number" id="f107-input" value="150" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <label for="f107-input" class="font-semibold text-slate-200">F10.7</label>
+                        <input type="number" id="f107-input" value="150" class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
                      <div>
-                        <label for="lt-input" class="font-semibold text-slate-700">Local Time (Hr)</label>
-                        <input type="number" id="lt-input" value="21.5" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <label for="lt-input" class="font-semibold text-slate-200">Local Time (Hr)</label>
+                        <input type="number" id="lt-input" value="21.5" class="form-input mt-1 block w-full rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     </div>
                     <button id="generate-button" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-lg transition-transform transform hover:scale-105">
                         Generate Forecast
                     </button>
                 </div>
 
-                <div id="forecast-result" class="mt-6 p-6 bg-slate-50 rounded-lg border border-slate-200 hidden">
+                <div id="forecast-result" class="mt-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700 hidden">
                     <div id="spinner-container-main" class="text-center p-8">
                         <div class="spinner mx-auto" style="width:48px; height:48px; border-width:5px;"></div>
-                        <p class="mt-4 text-slate-600 font-semibold">Calculating probability and contacting AI forecaster...</p>
+                        <p class="mt-4 text-slate-300 font-semibold">Calculating probability and contacting AI forecaster...</p>
                     </div>
                     <div id="result-content" class="hidden">
-                         <h3 class="text-2xl font-bold text-slate-800 mb-4">Forecast Assessment</h3>
+                         <h3 class="text-2xl font-bold text-white mb-4">Forecast Assessment</h3>
                          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                            <div class="text-center p-3 bg-white rounded shadow-sm">
-                                <p class="text-sm text-slate-500">Predicted Risk</p>
-                                <p id="result-prob" class="text-2xl font-bold text-blue-600"></p>
+                            <div class="text-center p-3 bg-slate-900/70 rounded shadow-sm">
+                                <p class="text-sm text-slate-400">Predicted Risk</p>
+                                <p id="result-prob" class="text-2xl font-bold text-blue-400"></p>
                             </div>
-                            <div class="text-center p-3 bg-white rounded shadow-sm">
-                                <p class="text-sm text-slate-500">Season</p>
+                            <div class="text-center p-3 bg-slate-900/70 rounded shadow-sm">
+                                <p class="text-sm text-slate-400">Season</p>
                                 <p id="result-season" class="text-2xl font-bold"></p>
                             </div>
-                            <div class="text-center p-3 bg-white rounded shadow-sm">
-                                <p class="text-sm text-slate-500">Solar Activity</p>
+                            <div class="text-center p-3 bg-slate-900/70 rounded shadow-sm">
+                                <p class="text-sm text-slate-400">Solar Activity</p>
                                 <p id="result-f107" class="text-2xl font-bold"></p>
                             </div>
-                            <div class="text-center p-3 bg-white rounded shadow-sm">
-                                <p class="text-sm text-slate-500">Time / Location</p>
+                            <div class="text-center p-3 bg-slate-900/70 rounded shadow-sm">
+                                <p class="text-sm text-slate-400">Time / Location</p>
                                 <p id="result-loc" class="text-2xl font-bold"></p>
                             </div>
                          </div>
-                         <div class="prose max-w-none text-slate-700 bg-white p-4 rounded">
-                             <p id="gemini-explanation" class="text-base"></p>
+                         <div id="gemini-explanation" class="prose max-w-none text-slate-300 bg-slate-900/70 p-4 rounded"></div>
+                         <div class="mt-4 text-center">
+                            <button id="mitigation-btn" class="hidden bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full shadow-md transition">✨ Get Mitigation Advice</button>
                          </div>
+                         <div id="mitigation-advice" class="mt-4 hidden"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="interaction" class="text-center bg-white p-8 rounded-lg shadow-md">
-            <h2 class="text-3xl font-bold text-slate-900">It's All About Combination</h2>
-            <p class="text-slate-600 mt-2 mb-8 max-w-3xl mx-auto">No single factor guarantees a plasma bubble. The highest probabilities (>60%) only occur when multiple conditions are met simultaneously.</p>
-            
-            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-slate-800">
-                <div class="p-4 bg-blue-100 rounded-lg flex items-center space-x-3">
-                    <span class="text-3xl">☀️</span>
-                    <span class="font-semibold text-lg">High Solar Activity</span>
+        <section id="gemini-compare" class="mb-12">
+            <div class="card p-8 rounded-lg shadow-lg">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold text-white">Comparative Analysis ✨</h2>
+                    <p class="text-slate-300 mt-2 max-w-3xl mx-auto">Compare two different scenarios side-by-side to understand the impact of changing conditions.</p>
                 </div>
-                <div class="text-2xl font-bold text-slate-400">+</div>
-                <div class="p-4 bg-green-100 rounded-lg flex items-center space-x-3">
-                    <span class="text-3xl">🍂</span>
-                    <span class="font-semibold text-lg">Equinox Season</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <div class="border border-slate-700 p-4 rounded-lg">
+                        <h4 class="text-lg font-bold mb-2 text-white">Scenario A</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                             <div><label for="doy-a" class="text-sm font-semibold">DOY</label><input type="number" id="doy-a" value="85" class="mt-1 w-full form-input"></div>
+                             <div><label for="lon-a" class="text-sm font-semibold">Lon (°E)</label><input type="number" id="lon-a" value="-75" class="mt-1 w-full form-input"></div>
+                             <div><label for="f107-a" class="text-sm font-semibold">F10.7</label><input type="number" id="f107-a" value="150" class="mt-1 w-full form-input"></div>
+                             <div><label for="lt-a" class="text-sm font-semibold">LT (Hr)</label><input type="number" id="lt-a" value="21.5" class="mt-1 w-full form-input"></div>
+                        </div>
+                    </div>
+                    <div class="border border-slate-700 p-4 rounded-lg">
+                        <h4 class="text-lg font-bold mb-2 text-white">Scenario B</h4>
+                         <div class="grid grid-cols-2 gap-3">
+                             <div><label for="doy-b" class="text-sm font-semibold">DOY</label><input type="number" id="doy-b" value="175" class="mt-1 w-full form-input"></div>
+                             <div><label for="lon-b" class="text-sm font-semibold">Lon (°E)</label><input type="number" id="lon-b" value="-75" class="mt-1 w-full form-input"></div>
+                             <div><label for="f107-b" class="text-sm font-semibold">F10.7</label><input type="number" id="f107-b" value="150" class="mt-1 w-full form-input"></div>
+                             <div><label for="lt-b" class="text-sm font-semibold">LT (Hr)</label><input type="number" id="lt-b" value="21.5" class="mt-1 w-full form-input"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-2xl font-bold text-slate-400">+</div>
-                <div class="p-4 bg-purple-100 rounded-lg flex items-center space-x-3">
-                     <span class="text-3xl">🌎</span>
-                    <span class="font-semibold text-lg">Favorable Longitude</span>
+                <div class="text-center mt-6">
+                    <button id="compare-button" class="w-1/2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-transform transform hover:scale-105">
+                        Compare Scenarios
+                    </button>
                 </div>
-                 <div class="text-2xl font-bold text-slate-400">→</div>
-                 <div class="p-4 bg-red-100 rounded-lg flex items-center space-x-3">
-                     <span class="text-3xl">📈</span>
-                    <span class="font-bold text-lg text-red-800">High Probability</span>
-                </div>
+                <div id="compare-result" class="mt-6 hidden"></div>
             </div>
-             <p class="text-slate-500 mt-6 text-sm">High solar flux during a solstice, or being in an active region during low solar activity, is insufficient to produce a high probability of bubble events.</p>
         </section>
+
+        <footer class="text-center mt-12 pt-8 border-t border-slate-700">
+            <h2 class="text-2xl font-bold text-white">It's All About Combination</h2>
+            <p class="text-slate-300 mt-2 mb-8 max-w-3xl mx-auto">No single factor guarantees a plasma bubble. The highest probabilities occur when multiple conditions are met simultaneously.</p>
+        </footer>
 
     </div>
 
 <script>
-    const tooltipCallback = {
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    title: function(tooltipItems) {
-                        const item = tooltipItems[0];
-                        let label = item.chart.data.labels[item.dataIndex];
-                        if (Array.isArray(label)) { return label.join(' '); }
-                        return label;
-                    }
-                }
-            }
-        }
-    };
-    
-    const chartColors = { blue: '#3B82F6', slate: '#64748B', green: '#10B981', purple: '#8B5CF6', red: '#EF4444' };
+    Chart.defaults.color = '#94a3b8'; // text-slate-400
+    Chart.defaults.borderColor = 'rgba(100, 116, 139, 0.2)';
 
-    new Chart(document.getElementById('averageProbChart'), {
-        type: 'doughnut',
-        data: { labels: ['Avg. Probability', 'No Occurrence'], datasets: [{ data: [21.7, 78.3], backgroundColor: [chartColors.blue, '#E2E8F0'], borderColor: ['#FFFFFF'], borderWidth: 4, hoverOffset: 4 }] },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return `${context.label}: ${context.raw}%`; } } } } }
-    });
+    const tooltipCallback = { plugins: { tooltip: { callbacks: { title: function(tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; if (Array.isArray(label)) { return label.join(' '); } return label; } } } } };
+    const chartColors = { blue: '#60A5FA', slate: '#64748B', green: '#34D399', purple: '#A78BFA', red: '#F87171' };
 
+    new Chart(document.getElementById('averageProbChart'), { type: 'doughnut', data: { labels: ['Avg. Probability', 'No Occurrence'], datasets: [{ data: [21.7, 78.3], backgroundColor: [chartColors.blue, '#334155'], borderColor: ['#0F172A'], borderWidth: 4, hoverOffset: 4 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return `${context.label}: ${context.raw}%`; } } } } } });
     const seasonalData = { labels: Array.from({length: 12}, (_, i) => new Date(2024, i, 15).toLocaleString('default', { month: 'short' })), probabilities: [0.35, 0.45, 0.65, 0.55, 0.25, 0.15, 0.1, 0.2, 0.4, 0.6, 0.5, 0.3] };
-    new Chart(document.getElementById('seasonalChart'), {
-        type: 'line',
-        data: { labels: seasonalData.labels, datasets: [{ label: 'Probability', data: seasonalData.probabilities, borderColor: chartColors.green, backgroundColor: 'rgba(16, 185, 129, 0.1)', fill: true, tension: 0.4, pointRadius: 0 }] },
-        options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 } }, plugins: { legend: { display: false } } }
-    });
-
+    new Chart(document.getElementById('seasonalChart'), { type: 'line', data: { labels: seasonalData.labels, datasets: [{ label: 'Probability', data: seasonalData.probabilities, borderColor: chartColors.green, backgroundColor: 'rgba(52, 211, 153, 0.1)', fill: true, tension: 0.4, pointRadius: 0 }] }, options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { grid: { color: 'rgba(100, 116, 139, 0.2)' } } }, plugins: { legend: { display: false } } } });
     const longitudeData = { labels: Array.from({length: 13}, (_, i) => (i * 30) - 180), probabilities: [0.5, 0.6, 0.4, 0.2, 0.1, 0.15, 0.2, 0.35, 0.55, 0.65, 0.5, 0.3, 0.4] };
-    new Chart(document.getElementById('longitudeChart'), {
-        type: 'line',
-        data: { labels: longitudeData.labels, datasets: [{ label: 'Probability', data: longitudeData.probabilities, borderColor: chartColors.purple, backgroundColor: 'rgba(139, 92, 246, 0.1)', fill: true, tension: 0.4, pointRadius: 0 }] },
-        options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'Longitude (degrees)'} } }, plugins: { legend: { display: false } } }
-    });
-
+    new Chart(document.getElementById('longitudeChart'), { type: 'line', data: { labels: longitudeData.labels, datasets: [{ label: 'Probability', data: longitudeData.probabilities, borderColor: chartColors.purple, backgroundColor: 'rgba(167, 139, 250, 0.1)', fill: true, tension: 0.4, pointRadius: 0 }] }, options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'Longitude (degrees)'}, grid: { color: 'rgba(100, 116, 139, 0.2)' } } }, plugins: { legend: { display: false } } } });
     const f107Data = Array.from({length: 150}, () => ({ x: 80 + Math.random() * 70, y: 0 }));
     f107Data.forEach(pt => { pt.y = (pt.x / 150) * 0.4 + Math.random() * 0.3 * (pt.x / 150) + 0.05; pt.y = Math.min(pt.y, 0.75); });
-    new Chart(document.getElementById('f107Chart'), {
-        type: 'scatter',
-        data: { datasets: [{ label: 'Scenario', data: f107Data, backgroundColor: 'rgba(239, 68, 68, 0.5)' }] },
-        options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'F10.7 Solar Flux' } } }, plugins: { legend: { display: false } } }
-    });
-    
+    new Chart(document.getElementById('f107Chart'), { type: 'scatter', data: { datasets: [{ label: 'Scenario', data: f107Data, backgroundColor: 'rgba(248, 113, 113, 0.5)' }] }, options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'F10.7 Solar Flux' }, grid: { color: 'rgba(100, 116, 139, 0.2)' } } }, plugins: { legend: { display: false } } } });
     const localTimeData = { labels: [18, 19, 20, 21, 22, 23, 0], probabilities: [0.05, 0.2, 0.5, 0.7, 0.6, 0.3, 0.1] };
-    new Chart(document.getElementById('localTimeChart'), {
-        type: 'bar',
-        data: { labels: localTimeData.labels, datasets: [{ label: 'Probability', data: localTimeData.probabilities, backgroundColor: 'rgba(59, 130, 246, 0.6)', borderColor: chartColors.blue, borderWidth: 2 }] },
-        options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'Local Time (Hour)'} } }, plugins: { legend: { display: false } } }
-    });
+    new Chart(document.getElementById('localTimeChart'), { type: 'bar', data: { labels: localTimeData.labels, datasets: [{ label: 'Probability', data: localTimeData.probabilities, backgroundColor: 'rgba(96, 165, 250, 0.6)', borderColor: chartColors.blue, borderWidth: 2 }] }, options: { ...tooltipCallback, responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 1 }, x: { title: { display: true, text: 'Local Time (Hour)'}, grid: { color: 'rgba(100, 116, 139, 0.2)' } } }, plugins: { legend: { display: false } } } });
+
+    function calculateProbability(doy, lon, f107, lt) { const seasonFactor = Math.abs(Math.cos((doy - 80) * Math.PI / 182.5)); const lonFactor = 0.6 + 0.4 * Math.cos((lon + 60) * Math.PI / 180); const f107Factor = Math.min(1, Math.max(0, (f107 - 70) / 100)); const ltFactor = Math.max(0, 1 - Math.pow((lt - 21.5) / 2.5, 2)); return Math.min(1, Math.max(0, seasonFactor * lonFactor * f107Factor * ltFactor * 0.9)); }
+    async function callGemini(promptText) { const payload = { contents: [{ role: "user", parts: [{ text: promptText }] }] }; const apiKey = ""; const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`; try { const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); const result = await response.json(); if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) { return result.candidates[0].content.parts[0].text.replace(/\n/g, '<br>'); } } catch (error) { console.error("Error calling Gemini API:", error); } return "Could not retrieve AI explanation at this time."; }
 
     const generateButton = document.getElementById('generate-button');
-    const forecastResultDiv = document.getElementById('forecast-result');
-    const spinnerContainerMain = document.getElementById('spinner-container-main');
-    const resultContent = document.getElementById('result-content');
-
-    function calculateProbability(doy, lon, f107, lt) {
-        const seasonFactor = Math.abs(Math.cos((doy - 80) * Math.PI / 182.5));
-        const lonFactor = 0.6 + 0.4 * Math.cos((lon + 60) * Math.PI / 180);
-        const f107Factor = Math.min(1, Math.max(0, (f107 - 70) / 100));
-        const ltFactor = Math.max(0, 1 - Math.pow((lt - 21.5) / 2.5, 2));
-        let probability = seasonFactor * lonFactor * f107Factor * ltFactor * 0.9;
-        return Math.min(1, Math.max(0, probability));
-    }
-
-    async function callGemini(promptText) {
-        const payload = { contents: [{ role: "user", parts: [{ text: promptText }] }] };
-        const apiKey = "";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const result = await response.json();
-            if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
-                return result.candidates[0].content.parts[0].text;
-            }
-        } catch (error) {
-            console.error("Error calling Gemini API:", error);
-        }
-        return "Could not retrieve AI explanation at this time.";
-    }
-
     generateButton.addEventListener('click', async () => {
+        const forecastResultDiv = document.getElementById('forecast-result');
+        const spinnerContainerMain = document.getElementById('spinner-container-main');
+        const resultContent = document.getElementById('result-content');
+        const mitigationBtn = document.getElementById('mitigation-btn');
+        const mitigationAdviceDiv = document.getElementById('mitigation-advice');
+        forecastResultDiv.classList.remove('hidden');
+        spinnerContainerMain.classList.remove('hidden');
+        resultContent.classList.add('hidden');
+        mitigationBtn.classList.add('hidden');
+        mitigationAdviceDiv.classList.add('hidden');
         const doy = parseFloat(document.getElementById('doy-input').value);
         const lon = parseFloat(document.getElementById('lon-input').value);
         const f107 = parseFloat(document.getElementById('f107-input').value);
         const lt = parseFloat(document.getElementById('lt-input').value);
-
-        forecastResultDiv.classList.remove('hidden');
-        spinnerContainerMain.classList.remove('hidden');
-        resultContent.classList.add('hidden');
-
         const probability = calculateProbability(doy, lon, f107, lt);
         const probabilityPercent = (probability * 100).toFixed(1);
-
         const riskLevel = probability > 0.6 ? "High" : probability > 0.3 ? "Moderate" : "Low";
-        const seasonProfile = (doy > 60 && doy < 150) || (doy > 240 && doy < 330) ? "Equinox" : "Solstice";
-        const f107Profile = f107 > 130 ? "High" : f107 > 100 ? "Moderate" : "Low";
-        
-        const forecastPrompt = `You are a space weather forecaster. Your task is to provide a brief, easy-to-understand forecast for the probability of equatorial plasma bubbles.
-        Here are the conditions:
-        - Day of Year: ${doy} (${seasonProfile} period)
-        - Longitude: ${lon} degrees East
-        - F10.7 Solar Flux: ${f107} (${f107Profile} activity)
-        - Local Time: ${lt}:00 hours
-        - The model's calculated probability is: ${probabilityPercent}% (${riskLevel} risk).
-        Based on the interplay of these factors, write a 2-3 sentence forecast summary. Explain WHY the risk is at this level and mention the potential impact on satellite signals like GPS. Do not repeat the input values. Start the forecast directly.`;
-
+        const forecastPrompt = `You are a space weather forecaster. Provide a brief, easy-to-understand forecast for equatorial plasma bubbles given these conditions: probability is ${probabilityPercent}% (${riskLevel} risk), DOY is ${doy}, longitude is ${lon}, F10.7 is ${f107}, and local time is ${lt}. Explain WHY the risk is at this level based on the interplay of factors and mention potential impacts on satellite signals. Do not repeat the input values.`;
         const explanation = await callGemini(forecastPrompt);
-        
         document.getElementById('result-prob').textContent = `${probabilityPercent}%`;
-        document.getElementById('result-season').textContent = seasonProfile;
-        document.getElementById('result-f107').textContent = f107Profile;
+        document.getElementById('result-season').textContent = (doy > 60 && doy < 150) || (doy > 240 && doy < 330) ? "Equinox" : "Solstice";
+        document.getElementById('result-f107').textContent = f107 > 130 ? "High" : f107 > 100 ? "Moderate" : "Low";
         document.getElementById('result-loc').textContent = `${lt}h / ${lon}°`;
-        document.getElementById('gemini-explanation').textContent = explanation;
-
+        document.getElementById('gemini-explanation').innerHTML = `<p>${explanation}</p>`;
+        mitigationBtn.dataset.risk = riskLevel;
         spinnerContainerMain.classList.add('hidden');
         resultContent.classList.remove('hidden');
+        mitigationBtn.classList.remove('hidden');
     });
     
+    document.getElementById('mitigation-btn').addEventListener('click', async (e) => { const risk = e.target.dataset.risk; const adviceDiv = document.getElementById('mitigation-advice'); adviceDiv.classList.remove('hidden'); adviceDiv.innerHTML = `<div class="text-center p-4"><div class="spinner mx-auto"></div></div>`; const mitigationPrompt = `Acting as a satellite operations advisor, provide 2-3 brief, actionable recommendations for mitigating the impact of a "${risk}" risk of plasma bubbles on GPS and satellite communication systems. Use a bulleted list format.`; const advice = await callGemini(mitigationPrompt); adviceDiv.innerHTML = `<div class="prose max-w-none text-slate-300 bg-green-900/50 p-4 rounded-md border border-green-800">${advice}</div>`; });
     document.querySelectorAll('.ai-insight-btn').forEach(button => {
         button.addEventListener('click', async () => {
-            const targetId = button.dataset.target;
-            const promptType = button.dataset.promptType;
-            const container = document.getElementById(targetId);
-
-            container.classList.remove('hidden');
+            const container = document.getElementById(button.dataset.target);
+            container.classList.toggle('hidden');
+            if(container.innerHTML !== '') { container.innerHTML = ''; return; }
             container.innerHTML = `<div class="text-center p-4"><div class="spinner mx-auto"></div></div>`;
-
-            let insightPrompt = '';
             const basePrompt = "You are a data analyst explaining a chart about plasma bubble probability. In 2-3 concise sentences, explain the key takeaway from the following observation: ";
-
-            switch(promptType) {
-                case 'seasonal':
-                    insightPrompt = basePrompt + "The chart shows that probability is highest around March/April and September/October, and lowest around June and December. Explain this equinoctial maxima phenomenon.";
-                    break;
-                case 'longitude':
-                    insightPrompt = basePrompt + "The chart shows that probability is highest over the American/Atlantic and Pacific sectors, with a significant minimum over Africa and India. Briefly explain why this geographic variation exists.";
-                    break;
-                case 'f107':
-                    insightPrompt = basePrompt + "The chart shows a clear positive trend: as F10.7 solar flux increases, the general probability of plasma bubbles also increases. Explain why higher solar activity leads to more bubble formation.";
-                    break;
-                case 'time':
-                    insightPrompt = basePrompt + "The chart shows that probability peaks in the post-sunset hours (around 21:00-22:00) and then decreases through the night. Explain this diurnal pattern.";
-                    break;
+            let insightPrompt = '';
+            switch(button.dataset.promptType) {
+                case 'seasonal': insightPrompt = basePrompt + "The chart shows probability is highest around March/April and September/October. Explain this equinoctial maxima phenomenon."; break;
+                case 'longitude': insightPrompt = basePrompt + "The chart shows probability is highest over the American/Atlantic and Pacific sectors. Briefly explain this geographic variation."; break;
+                case 'f107': insightPrompt = basePrompt + "The chart shows a clear positive trend: as F10.7 solar flux increases, so does bubble probability. Explain why."; break;
+                case 'time': insightPrompt = basePrompt + "The chart shows probability peaks post-sunset (around 21:00-22:00). Explain this diurnal pattern."; break;
             }
-
             const explanation = await callGemini(insightPrompt);
-            container.innerHTML = `<div class="prose prose-sm max-w-none text-slate-700 bg-slate-100 p-3 rounded-md border border-slate-200">${explanation}</div>`;
+            container.innerHTML = `<div class="prose prose-sm max-w-none text-slate-300 bg-slate-800 p-3 rounded-md border border-slate-700"><p>${explanation}</p></div>`;
         });
     });
 
+    document.getElementById('compare-button').addEventListener('click', async () => {
+        const resultDiv = document.getElementById('compare-result');
+        resultDiv.classList.remove('hidden');
+        resultDiv.innerHTML = `<div class="text-center p-8"><div class="spinner mx-auto" style="width:48px; height:48px; border-width:5px;"></div></div>`;
+        const scenarioA = { doy: document.getElementById('doy-a').value, lon: document.getElementById('lon-a').value, f107: document.getElementById('f107-a').value, lt: document.getElementById('lt-a').value };
+        const scenarioB = { doy: document.getElementById('doy-b').value, lon: document.getElementById('lon-b').value, f107: document.getElementById('f107-b').value, lt: document.getElementById('lt-b').value };
+        scenarioA.prob = (calculateProbability(scenarioA.doy, scenarioA.lon, scenarioA.f107, scenarioA.lt) * 100).toFixed(1);
+        scenarioB.prob = (calculateProbability(scenarioB.doy, scenarioB.lon, scenarioB.f107, scenarioB.lt) * 100).toFixed(1);
+        const comparePrompt = `You are a space weather expert. Compare two scenarios for plasma bubble risk.
+        - Scenario A: DOY ${scenarioA.doy}, Lon ${scenarioA.lon}, F10.7 ${scenarioA.f107}, LT ${scenarioA.lt}. Calculated risk: ${scenarioA.prob}%.
+        - Scenario B: DOY ${scenarioB.doy}, Lon ${scenarioB.lon}, F10.7 ${scenarioB.f107}, LT ${scenarioB.lt}. Calculated risk: ${scenarioB.prob}%.
+        First, state which scenario has a higher risk. Then, in a few sentences, explain the key reason for the difference by focusing on the parameters that changed between the scenarios.`;
+        const comparison = await callGemini(comparePrompt);
+        resultDiv.innerHTML = `<div class="mt-6 p-6 bg-slate-800/50 rounded-lg border border-slate-700"><h4 class="text-xl font-bold text-white mb-3">Comparative Assessment</h4><div class="grid grid-cols-2 gap-4 text-center mb-4"><div class="bg-slate-900/70 p-3 rounded shadow-sm"><p class="text-sm text-slate-400">Risk A</p><p class="text-2xl font-bold">${scenarioA.prob}%</p></div><div class="bg-slate-900/70 p-3 rounded shadow-sm"><p class="text-sm text-slate-400">Risk B</p><p class="text-2xl font-bold">${scenarioB.prob}%</p></div></div><div class="prose max-w-none text-slate-300 bg-slate-900/70 p-4 rounded">${comparison}</div></div>`;
+    });
 </script>
 
 </body>
